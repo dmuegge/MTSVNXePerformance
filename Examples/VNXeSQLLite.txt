@@ -1,0 +1,218 @@
+# Detail function list
+# DMPerfAnalysis
+# 	 Get-SeriesRollup
+#
+# Capacity
+#	 Get-VNXeApplicationTotalsDetail
+#	 Get-VNXeApplicationsDetail
+#	 Get-VNXeInitTimeDetail
+#	 Get-VNXePoolTotalsDetail
+#	 Get-VNXePoolsDetail
+#	 Get-VNXeSystemTotalsDetail
+# Basic Summary
+#	 Get-VNXeBasicSummaryDart2Detail
+#	 Get-VNXeBasicSummaryDart3Detail
+#	 Get-VNXeBasicSummaryFlareSPADetail
+#	 Get-VNXeBasicSummaryFlareSPBDetail
+#	 Get-VNXeBasicSummaryGMSSPADetail
+#	 Get-VNXeBasicSummaryGMSSPBDetail
+#	 Get-VNXeBasicSummaryOSSPADetail
+#	 Get-VNXeBasicSummaryOSSPBDetail
+#Basic Default
+#	 Get-VNXeBasicDefaultDart2Detail
+#	 Get-VNXeBasicDefaultDart3Detail
+#	 Get-VNXeBasicDefaultFlareSPADetail
+#	 Get-VNXeBasicDefaultFlareSPBDetail
+#	 Get-VNXeBasicDefaultOSSPADetail
+#	 Get-VNXeBasicDefaultOSSPBDetail
+
+
+#
+# Capacity - capacity.db
+# application_totals
+#	timestamp            : 2012-09-18 12:40:00
+#	closing_time         : 2012-09-19 00:00:00
+#	allocated_protection : 152458756096
+#	total_protection     : 154076708864
+# applications
+#	application_id         : 15
+#	application_class      : 15
+#	record_time            : 2012-09-18 12:40:02
+#	timestamp              : 2012-09-18 12:40:02
+#	closing_time           : 2012-09-19 00:00:00
+#	global_pool_associated : N/A
+#	local_pool_associated  : N/A
+#	used_space             : 0
+#	allocated_space        : 0
+#	total_space            : 0
+#	used_protection        : 0
+#	allocated_protection   : 0
+#	total_protection       : 0
+#	trend                  : 0
+#	trend_protection       : 0
+# init_time
+#	record_time : 2011-05-03 23:59:15
+#	timestamp   : 2011-05-03 23:59:15
+#	lockit      : 1
+# pool_totals
+#	timestamp       : 2012-09-18 12:40:00
+#	closing_time    : 2012-09-19 00:00:00
+#	allocated_space : 813556563968
+#	total_space     : 939276632064
+#	free_space      : 125720068096
+# pools
+#	pool_id         : extreme_performance
+#	record_time     : 2012-09-18 12:40:00
+#	timestamp       : 2012-09-18 12:40:00
+#	closing_time    : 2012-09-19 00:00:00
+#	used_space      : 0
+#	allocated_space : 0
+#	total_space     : 0
+#	trend           : 0
+# system_totals
+#	timestamp            : 2011-05-03 23:59:15
+#	closing_time         : 2011-05-03 23:59:15
+#	allocated_space      : 0
+#	total_space          : 0
+#	free_space           : 0
+#	allocated_protection : 0
+#	total_protection     : 0
+#
+# Basic Summary - stats_basic_summary.db
+# Dart2/3
+#	id                    : 20068
+#	stored_timestamp      : 2012-09-18 11:47:49
+#	timestamp             : "11:47:50"
+#	SysClockUnixms        : 1347968869550
+#	NetBasicBytesIn       : 5690198372
+#	NetBasicBytesOut      : 8196816244
+#	NetInPackets          : 14721106
+#	NetOutPackets         : 16627568
+#	TCPInPackets          : 14024901
+#	TCPOutPackets         : 16191415
+#	UDPInPackets          : 696205
+#	UDPOutPackets         : 436153
+#	StoreWriteBytes       : 1592116224
+#	StoreReadBytes        : 5306700288
+#	StoreReadRequests     : 138755
+#	StoreWriteRequests    : 270436
+#	KernelBufCacheHits    : 60431829
+#	kernelBufCacheLookups : 60434149
+#	CifsActiveConnections : 0
+#	CifsTotalConnections  : 0
+#	CifsBasicReadBytes    : 0
+#	CifsBasicReadOpCount  : 0
+#	CifsBasicWriteBytes   : 0
+#	CifsBasicWriteOpCount : 0
+#	FsDnlcHits            : 2726
+#	FsDnlctotal           : 11392
+#	FsOfCachehits         : 0
+#	FsOfCachetotal        : 0
+#	NfsActiveConnections  : 0
+#	NfsBasicReadBytes     : 0
+#	NfsBasicReadOpCount   : 0
+#	NfsBasicWriteBytes    : 0
+#	NfsBasicWriteOpCount  : 0
+#	iSCSIBasicReads       : 113424
+#	iSCSIReadBytes        : 5144312832
+#	iSCSIBasicWrites      : 22495
+#	iSCSIWriteBytes       : 11517440
+#	owner                 : spa
+# flare_spa/b
+#	id                      : 20067
+#	stored_timestamp        : 2012-09-18 12:47:48
+#	HardErrorCount          : 0
+#	HighWaterMarkFlushOff   : 0
+#	IdleFlushOn             : 350405
+#	LowWaterMarkFlushOff    : 0
+#	writeCacheFlushes       : 1390767
+#	writeCacheBlocksFlushed : 205980274
+#	ReadHitRatio            : 64
+#	SPTimestamp             : 204419231
+#	SumOfQueueLengths       : 451583
+#	arrivalsToNonzeroQueue  : 13188166
+#	SumOfLUNBlkRead         : 204419217
+#	SumOfLUNBlkWrite        : 38263
+#	SumOfLUNDiskRead        : 1599577
+#	SumOfLUNDIskWrite       : 90082
+#	SumOfLUNDiskBlkRead     : 1844394801
+#	SumOfLUNDiskBlkWrite    : 180840352
+#	SumOfFRUBlkRead         : 1807692687
+#	SumOfFRUBlkWrite        : 170616656
+#	SumOfFRUReadCount       : 2964017
+#	SumOfFRUWriteCount      : 2609406
+# gms_spa/b
+#	id                : 20067
+#	stored_timestamp  : 2012-09-18 12:47:48
+#	timestamp         : 2012:09:18:12:47:48
+#	GMS_IO_Mem        : 2547
+#	CSX_Alloced       : 151
+#	CSX_Reserved      : 600
+#	GMS_Avail         : 1796
+#	NASPrim           : 832
+#	NasSecond         : 0
+#	BlockPrim         : 500
+#	BlockSecond       : 0
+#	WrCache           : 385
+#	RdCache           : 65
+#	WrCacheEnable     : 1
+#	RdCacheEnable     : 1
+#	CurFree           : 10
+#	MinFree           : 10
+#	MaxFree           : 10
+#	TotalSystemMemory : 3994
+# os_spa/b
+#	id               : 20068
+#	stored_timestamp : 2012-09-18 12:47:48
+#	timestamp        : 2012-09-18
+#	unixtimestamp    : 1347972468
+#	busySystemTicks  : 51884147
+#	busyUserTicks    : 27381137
+#	idleTicks        : 1226433356
+#	waitTicks        : 16037536
+#	context_swtch    : 17031289112
+#	irq_sum          : 9684034944
+#	num_processes    : 183827632
+#	procs_running    : 9
+#	mempgin          : 13042781
+#	mempgout         : 261866358
+#	pgswpin          : 12229
+#	pgswpout         : 30504
+#	MemTotalKB       : 1482256
+#	MemFree          : 53096
+#	SwapTotal        : 1092412
+#	SwapFree         : 998612
+#
+# Basic Default - stats_basic_default.db"
+# Dart2/3
+#	id                 : 119633
+#	stored_timestamp   : 2012-09-16 12:45:11
+#	timestamp          : "12:45:12"
+#	SysClockUnixms     : 1347799511725
+#	NetBasicBytesIn    : 5397711256
+#	NetBasicBytesOut   : 7787641417
+#	NetInPackets       : 13968381
+#	NetOutPackets      : 15783192
+#	TCPInPackets       : 13308159
+#	TCPOutPackets      : 15369388
+#	UDPInPackets       : 660222
+#	UDPOutPackets      : 413804
+#	StoreReadBytes     : 5052919296
+#	StoreWriteBytes    : 1521390592
+#	StoreReadRequests  : 132742
+#	StoreWriteRequests : 258324
+#	owner              : spa
+# flare_spa/b - Empty Table ??
+# os_spa/b_default
+#	id               : 128653
+#	stored_timestamp : 2012-09-18 12:44:35
+#	timestamp        : 2012-09-18
+#	unixtimestamp    : 1347972275
+#	busySystemTicks  : 51880755
+#	busyUserTicks    : 27379419
+#	idleTicks        : 1226362534
+#	waitTicks        : 16036066
+#	context_swtch    : 17030229913
+#	irq_sum          : 9683439201
+#	num_processes    : 183816979
+#	procs_running    : 2
