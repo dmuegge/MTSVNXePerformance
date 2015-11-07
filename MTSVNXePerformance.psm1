@@ -90,131 +90,7 @@ function Get-TableDetail{
 		
 		$conn.Close()
 		$result	
-}
-
-
-function Get-PHDSQLFieldNames{
-<#
-.SYNOPSIS
-    
-
-.DESCRIPTION
-
-
-.PARAMETER InputObject
-
-
-.PARAMETER PDHObjectName
-
-
-.PARAMETER PDHTimeString
-
-
-.PARAMETER TSPropertyName
-
-
-.OUTPUTS
-
-
-.EXAMPLE
-
-
-.NOTES
-
-#>
-
-   [CmdletBinding()]
-	
-	param ( 
-		[Parameter(Mandatory=$True)]$InputObject,
-        [Parameter(Mandatory=$True)][string]$PDHObjectName, 
-		[Parameter(Mandatory=$True)][string]$PDHTimeString, 
-		[Parameter(Mandatory=$True)][string]$TSPropertyName
-	)
-
-
-    $fieldnames = @()
-    $fieldnames += $PDHTimeString
-    #$StatProps = $InputObject
-    foreach($prop in $InputObject){
-
-        if((($prop.Name).ToString()) -ne $TSPropertyName){
-
-            $propname = $prop.Name
-            $fieldnames += ($PDHObjectName + "\" + $propname)
-            
-        }                            
-    }
-
-    $fieldnames
-
-} # Get-PHDSQLFieldNames
-
-
-function Get-PHDSQLColumnListValue{
-<#
-.SYNOPSIS
-    
-
-.DESCRIPTION
-
-
-.PARAMETER InputObject
-
-
-.PARAMETER PDHObjectName
-
-
-.PARAMETER PDHTimeString
-
-
-.PARAMETER TSPropertyName
-
-
-.OUTPUTS
-
-
-.EXAMPLE
-
-
-.NOTES
-
-#>
-
-   [CmdletBinding()]
-	
-	param ( 
-		[Parameter(Mandatory=$True)]$InputObject,
-        [Parameter(Mandatory=$True)][string]$PDHObjectName, 
-		[Parameter(Mandatory=$True)][string]$PDHTimeString, 
-		[Parameter(Mandatory=$True)][string]$TSPropertyName
-	)
-
-
-    $ReturnObject = New-Object -TypeName PSobject
-    $columnlist = $null
-	$columnvalue = $null
-    $sb_ColumnList = New-Object System.Text.stringbuilder
-    $sb_ColumnValue = New-Object System.Text.stringbuilder
-    $StatProps = ($InputObject[0] | Get-Member -MemberType NoteProperty)
-
-    foreach($prop in $StatProps){
-
-        if((($prop.Name).ToString()) -ne $TSPropertyName){
-
-            $propname = $prop.Name
-            $sb_ColumnList.Append(",[" + $PDHObjectName + "\" + $propname + "]")  | Out-Null
-            if($InputObject."$propname" -ne $null){[Decimal]$DecColumnValue = $InputObject."$propname"}else{[Decimal]$DecColumnValue = 0}
-            $sb_ColumnValue.Append("," + $DecColumnValue.ToString()) | Out-Null
-        }                            
-    }
-    
-    $ReturnObject | Add-Member -MemberType NoteProperty -Name ColumnList -Value ($sb_ColumnList.ToString())
-    $ReturnObject | Add-Member -MemberType NoteProperty -Name ColumnValue -Value ($sb_ColumnValue.ToString())
-
-    $ReturnObject
-
-} # Get-PHDSQLColumnListValue
+} # Get-TableDetail
 
 #endregion
 
@@ -308,7 +184,7 @@ $detailrecords = Get-VNXeBasicSummaryDetail
 function Get-PoolNames{
 <#
 .SYNOPSIS
-
+    
 
 .DESCRIPTION
 
