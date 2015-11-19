@@ -6,7 +6,7 @@
 ####################################################################################################
 ## Disclaimer
 ## ****************************************************************
-## * THE (MTSVNXePerformance PowerShell Module)                           *
+## * THE (MTSVNXePerformance PowerShell Module)                   *
 ## * IS PROVIDED WITHOUT WARRANTY OF ANY KIND.                    *
 ## *                                                              *
 ## * This module is licensed under the terms of the MIT license.  *

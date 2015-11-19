@@ -21,6 +21,8 @@ Version
 
 - 0.1.00 2015-11-07 - Corrected error calculating time rollover in data, published to GitHub
 
+- 0.1.01 2015-11-19 - Updated module manifest
+
 
 Notes
 ------
