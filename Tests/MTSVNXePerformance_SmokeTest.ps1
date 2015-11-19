@@ -14,6 +14,7 @@ Is meant to be used for manual testing.
 #>
 
 Import-Module MTSVNXePerformance
+Import-Module MTSChart
 
 
 $ReportPath = "C:\Data\VNXe_Test\APM0011\Report"
@@ -30,13 +31,88 @@ $PoolsCapacity = Get-VNXeCapacityStats "pools"
 $PoolStats = Get-PoolStats -InputObject $PoolsCapacity
 
 
+
+
 if(-Not (Test-Path -Path $ReportPath)){New-Item -Path $ReportPath -ItemType Directory}
 if(-Not (Test-Path -Path $ChartPath)){New-Item -Path $ChartPath -ItemType Directory}
 
 foreach($Pool in $PoolNames){
     $ImgFullPath = ($ChartPath + '\' + $VNXeHOstName + '_Capacity_' + (($pool.pool_id).ToString().Replace(' ','_')) + '_Pool.png')
-    New-PNGChart -YValues 'allocated_space,total_space' -ChartType 'Line' -ChartTitle ($pool.pool_id) -ChartFullPath $ImgFullPath -InputObject ($PoolStats | Where-Object pool_id -EQ ($pool.pool_id)) | Out-Null
+    Out-MTSChart -InputObject ($PoolStats | Where-Object pool_id -EQ ($pool.pool_id)) `
+                 -XValue 'TimeStamp' `
+                 -YValues 'allocated_space,total_space' `
+                 -ChartType 'Line' `
+                 -ChartTitle ($pool.pool_id) `
+                 -XInterval 20 `
+                 -Height 600 `
+                 -width 800 `
+                 -ChartFileType 'png' `
+                 -ChartFullPath $ImgFullPath
+
+
     iex $ImgFullPath
-    Get-SeriesRollup -InputObject ($PoolStats | Where-Object pool_id -EQ ($pool.pool_id)) -Property allocated_space | Select-Object Property,Average,Median,95thPercentile,99thPercentile,Maximum | ConvertTo-Html -Fragment -As List | Out-File -FilePath $Reportfile -Append
+    Get-SeriesRollup -InputObject ($PoolStats | Where-Object pool_id -EQ ($pool.pool_id)) -Property allocated_space | Select-Object Property,Average,Median,95thPercentile,99thPercentile,Maximum | FT -AutoSize
     
 }
+
+
+$OSSPA = Get-VNXeBasicDefaultStats 'os_spa_default'
+$OSStats = Get-OSStats -InputObject $OSSPA
+
+$YValues = 'PercentCPUBusy,PercentCPUIdle,PercentCPUWait'
+
+$PFields = $YValues.Split(',')
+foreach($f in $PFields){
+    Get-SeriesRollup -InputObject $OSStats -Property $f | Select-Object Property,Average,Median,95thPercentile,99thPercentile,Maximum | FT -AutoSize
+}
+$ImgFullPath = ($ChartPath + '\' + $VNXeHOstName + '_SPA-OS-Stats.png')
+Out-MTSChart -InputObject $OSStats `
+                 -XValue 'TimeStamp' `
+                 -YValues $YValues `
+                 -ChartType 'Line' `
+                 -ChartTitle 'os_spa_default' `
+                 -XInterval 20 `
+                 -Height 600 `
+                 -width 800 `
+                 -ChartFileType 'png' `
+                 -ChartFullPath $ImgFullPath
+
+iex $ImgFullPath
+
+
+
+$ImgFullPath = ($ChartPath + '\' + $VNXeHOstName + '_Dart2_IOPS.png')
+$Dart2 = Get-VNXeBasicDefaultStats 'dart2'
+$DartStoreStats2 = Get-DartStoreStats -InputObject $Dart2
+Out-MTSChart -InputObject $DartStoreStats2 `
+                 -XValue 'TimeStamp' `
+                 -YValues 'StoreReadsPerSec,StoreWritesPerSec' `
+                 -ChartType 'Line' `
+                 -ChartTitle 'Dart 2 IOPS' `
+                 -XInterval 20 `
+                 -Height 600 `
+                 -width 800 `
+                 -ChartFileType 'png' `
+                 -ChartFullPath $ImgFullPath `
+                 -LegendOn | Out-Null
+
+
+iex $ImgFullPath
+
+$ImgFullPath = ($ChartPath + '\' + $VNXeHOstName + '_Dart3_IOPS.png')
+$Dart3 = Get-VNXeBasicDefaultStats 'dart3'
+$DartStoreStats3 = Get-DartStoreStats -InputObject $Dart3
+Out-MTSChart -InputObject $DartStoreStats3 `
+                 -XValue 'TimeStamp' `
+                 -YValues 'StoreReadsPerSec,StoreWritesPerSec' `
+                 -ChartType 'Line' `
+                 -ChartTitle 'Dart 3 IOPS' `
+                 -XInterval 20 `
+                 -Height 600 `
+                 -width 800 `
+                 -ChartFileType 'png' `
+                 -ChartFullPath $ImgFullPath `
+                 -LegendOn | Out-Null
+
+
+iex $ImgFullPath
