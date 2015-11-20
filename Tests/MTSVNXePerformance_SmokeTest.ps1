@@ -36,22 +36,11 @@ $PoolStats = Get-PoolStats -InputObject $PoolsCapacity
 if(-Not (Test-Path -Path $ReportPath)){New-Item -Path $ReportPath -ItemType Directory}
 if(-Not (Test-Path -Path $ChartPath)){New-Item -Path $ChartPath -ItemType Directory}
 
+
 foreach($Pool in $PoolNames){
-    $ImgFullPath = ($ChartPath + '\' + $VNXeHOstName + '_Capacity_' + (($pool.pool_id).ToString().Replace(' ','_')) + '_Pool.png')
-    Out-MTSChart -InputObject ($PoolStats | Where-Object pool_id -EQ ($pool.pool_id)) `
-                 -XValue 'TimeStamp' `
-                 -YValues 'allocated_space,total_space' `
-                 -ChartType 'Line' `
-                 -ChartTitle ($pool.pool_id) `
-                 -XInterval 20 `
-                 -Height 600 `
-                 -width 800 `
-                 -ChartFileType 'png' `
-                 -ChartFullPath $ImgFullPath
 
-
-    iex $ImgFullPath
-    Get-SeriesRollup -InputObject ($PoolStats | Where-Object pool_id -EQ ($pool.pool_id)) -Property allocated_space | Select-Object Property,Average,Median,95thPercentile,99thPercentile,Maximum | FT -AutoSize
+    ($pool.pool_id)
+    Get-SeriesRollup -InputObject ($PoolStats | Where-Object pool_id -EQ ($pool.pool_id)) -Property allocated_space | Select-Object Property,Average,Median,95thPercentile,99thPercentile,Maximum
     
 }
 
